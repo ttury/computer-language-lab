@@ -1,13 +1,18 @@
 #include <stdio.h>
 
-void main() {
-  int n = 10;
-  int *np = &n;
-  int **npp = &np;
-  int ***nppp = &npp;
-  printf("%d %d %d %d\n", n, *np, **npp, ***nppp);
-  printf("%ld %ld %ld %ld\n", sizeof(int), sizeof(int*), sizeof(int**), sizeof(int***));
-  printf("%ld %ld %ld %ld\n", sizeof(n), sizeof(np), sizeof(npp), sizeof(nppp));
+void KU_add(int*, int**);
+
+int main() {
+  int *a, *b, **c;
+  int x=2, y=3;
+  a = &y; b = &x; c = &b;
+  printf("x: %d, y: %d\n", x, y);
+  KU_add(a, c);
+  printf("x+y= %d", x);
+  return 0;
 }
 
-// 모든 포인터는 용량 동일
+void KU_add(int *m, int **n) {
+  int t;
+  **n = *m + **n;
+}
